@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nurie Daily</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="studio" aria-label="今日の塗り絵">
+        <header class="topbar">
+          <div>
+            <p class="date-label" id="todayLabel"></p>
+            <h1>Nurie Daily</h1>
+          </div>
+          <div class="streak" aria-label="連続完成日数">
+            <span id="streakCount">0</span>
+            <small>days</small>
+          </div>
+        </header>
+
+        <div class="mode-row" role="group" aria-label="難易度">
+          <button class="mode-button is-active" data-difficulty="easy">3分</button>
+          <button class="mode-button" data-difficulty="normal">10分</button>
+          <button class="mode-button" data-difficulty="slow">じっくり</button>
+        </div>
+
+        <div class="canvas-wrap">
+          <svg
+            id="coloringPage"
+            class="coloring-page"
+            viewBox="0 0 720 720"
+            role="img"
+            aria-labelledby="artTitle artDesc"
+          >
+            <title id="artTitle">今日の庭</title>
+            <desc id="artDesc">クリックまたはタップした場所を選んだ色で塗ります。</desc>
+            <defs>
+              <filter id="paperShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#4e463f" flood-opacity=".16" />
+              </filter>
+              <pattern id="tinyDots" width="26" height="26" patternUnits="userSpaceOnUse">
+                <circle cx="5" cy="7" r="1.8" fill="#d8d0c4" />
+              </pattern>
+            </defs>
+            <rect x="22" y="22" width="676" height="676" rx="18" fill="#fffdf7" filter="url(#paperShadow)" />
+            <rect x="54" y="56" width="612" height="608" rx="12" fill="url(#tinyDots)" opacity=".45" />
+
+            <g id="sceneLayer"></g>
+          </svg>
+        </div>
+
+        <div class="tool-strip">
+          <button class="icon-button" id="undoButton" aria-label="一つ戻す" title="一つ戻す">↶</button>
+          <button class="icon-button" id="clearButton" aria-label="今日の色を消す" title="今日の色を消す">⌫</button>
+          <div class="completion">
+            <div class="meter" aria-hidden="true"><span id="progressBar"></span></div>
+            <strong id="progressText">0%</strong>
+          </div>
+        </div>
+
+        <div class="palette" id="palette" aria-label="パレット"></div>
+      </section>
+
+      <aside class="side-panel" aria-label="記録とギャラリー">
+        <section class="daily-card">
+          <div>
+            <p class="eyebrow">Today's reward</p>
+            <h2 id="rewardTitle">新しい色まであと少し</h2>
+          </div>
+          <p id="rewardText"></p>
+        </section>
+
+        <section class="calendar-section">
+          <div class="section-heading">
+            <h2>Calendar</h2>
+            <span id="monthLabel"></span>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </section>
+
+        <section class="gallery-section">
+          <div class="section-heading">
+            <h2>Garden</h2>
+            <span id="galleryCount">0 / 5</span>
+          </div>
+          <div class="garden" id="garden">
+            <div class="garden-sky"></div>
+            <div class="garden-ground"></div>
+            <div class="garden-item tree" data-unlock="1"></div>
+            <div class="garden-item path" data-unlock="2"></div>
+            <div class="garden-item bench" data-unlock="3"></div>
+            <div class="garden-item lantern" data-unlock="5"></div>
+            <div class="garden-item house" data-unlock="7"></div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
