@@ -13,3 +13,5 @@ python3 -m http.server 4173
 ## Deploy
 
 このリポジトリは静的サイトです。GitHub Pages は `.github/workflows/pages.yml` でデプロイします。
+
+Pages URL: https://goodkoko3977.github.io/nurie-daily/
